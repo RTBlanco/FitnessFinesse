@@ -1,7 +1,7 @@
 Fitness App
 
 (models)
-Post 
+Post    #Join table joining categories & users
     - belongs_to :user
     - has_many :comments
     - has_many :users, through :comments
@@ -15,6 +15,7 @@ User
     - has_many :posts
     - has_many :comments
     - has_many :commented_posts, through :comments
+    - has_many :categories, through :posts
     - username
     - email
     - password_digest
