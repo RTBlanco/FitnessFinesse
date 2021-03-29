@@ -35,3 +35,6 @@ Categories
 
 
 <!-- The code in users_controller - url:'/signup' just means that it will re-render the new page so that itll have the Signup url instead of the user url -->
+
+
+<!-- For "signup link in sessions "Home page" you can use this alternate coee instead ------ <a href="/signup">Sign Up Here</a>
