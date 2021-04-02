@@ -3,10 +3,16 @@ class CommentsController < ApplicationController
 
     def index
         #how do i check if its nested?
-        if param[:post_id] &&   #then it's nested
-            @comments = @post.comments
+        if params[:post_id] 
+            @post = Post.find_by_id(params[:post_id])
+            if @post #then it's nested
+               @comments = @post.comments
+            else
+                flash[:message] = "That post doesn't exist"
+                @comments = Comment.all
+            end
         else
-        @comments = Comment.all
+            @comments = Comment.all
         end
     end
 
