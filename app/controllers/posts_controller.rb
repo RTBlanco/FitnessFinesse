@@ -6,14 +6,22 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post = Post.new(user_params)
-        if @user.save
-            redirect_to @user
+        @post = current_user.posts.build(user_params)
+        if @post.save
+            redirect_to @posts_path
         else
           render :new
         end
     end
 
+    def index
+        @post = Post.all
+    end
+
+    def show
+        @post = Post.find_by_id(params[:id])
+        redirect_to posts_path if !@post
+    end
 
     private
 
