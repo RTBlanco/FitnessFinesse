@@ -1,15 +1,12 @@
-<h1>New Post!</h1>
-
+<h1>Edit <%= @post.title%>!</h1>
 
 <%= render partial: "layouts/errors", locals: {object: @post} %>
-<!-- render the errors partial, send it the @post as the 'object' -->
-
 <%= form_for(@post) do |f|%>
   <%= f.label "Choose a category:" %>
   <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: true %>
 
 
-   <p>Or create a new category:
+   <p>or create a new category:
   <%= f.fields_for :category do |c|%>
     <%= c.text_field :name%>
   <% end %>
@@ -21,5 +18,6 @@
   <br></br>
   <%= f.label :content %>
   <%= f.text_area :content %>
+  
   <%= f.submit %>
 <% end %>

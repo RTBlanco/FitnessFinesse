@@ -1,12 +1,10 @@
 class CreatePosts < ActiveRecord::Migration[6.1]
   def change
-    create_table :posts do |t|
-      t.string :title
-      t.text :content
-      # t.belongs_to :user, null: false, foreign_key: true
-      t.belongs_to :user, foreign_key: true
-      #  t.belongs_to :category, null: false, foreign_key: true
-      t.belongs_to :category, foreign_key: true
+    create_table :users do |t|
+      t.string :username
+      t.string :email
+      t.string :password_digest
+
 
       t.timestamps
     end

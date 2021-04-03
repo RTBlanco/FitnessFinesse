@@ -18,8 +18,9 @@ Rails.application.routes.draw do
  
   #omniauth callback route
  
-  get "/auth/:provider/callback" => 'sessions#google'
- 
+  get "/auth/google_oauth2" => 'sessions#google'
+
+  
   resources :posts do
      resources :comments
    end
@@ -29,12 +30,8 @@ Rails.application.routes.draw do
    end
  
    resources :categories, only: [:index, :show]
- 
- 
- 
- 
- 
- 
+
  
    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  end
+ 

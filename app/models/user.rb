@@ -1,17 +1,18 @@
 class User < ApplicationRecord
-    has_many :posts                               # Posts that I wrote
-    #has_many :categories, through :posts         #The Join table would be categories
-    has_many :comments    # This is a comment I wrote on someone elses post about something and now that I have a comment, its a "commented post"
-    has_many :commented_posts, through: :comments, source: :post
-    has_secure_password     #gives us access to the .authenticate method, built in validations for passwords/password confirmation
-    #has_many :authors, through :post
+  has_many :posts
+  has_many :comments
+  has_many :commented_posts, through: :comments, source: :post
+  has_secure_password  #authenticate, validate password &/or password confirmation
+  has_many :categories, through: :posts
+
+  validates :username, :email, presence: true
+
+  def self.most_active
+    joins(:posts).group(:user_id).order("count(user_id) DESC").limit(3)
+    # combine with posts   - JOIN
+    # count the number of posts
+    # sort desc  - ORDER
+
+    # User.all.sort_by{|u|  - u.posts.count}
+  end
 end
-
-
-# Nested Routes
-# new, show, or index
-# '/users'
-# '/users/:id/posts'
-# '/posts'
-# '/posts/:id/comments'
-
